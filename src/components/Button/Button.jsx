@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 
 import { Button } from './Button.styles';
 
-const NavButton = ({ onClick }) => {
+const NavButton = ({ onClick, text, type }) => {
   return (
-    <Button type="submit" onClick={onClick}>
-      Load more
+    <Button type={type} onClick={onClick}>
+      {text}
     </Button>
   );
 };
@@ -16,6 +16,8 @@ NavButton.defaultProps = {
 
 NavButton.propTypes = {
   onClick: PropTypes.func,
+  text: PropTypes.string,
+  type: PropTypes.string,
 };
 
 export default NavButton;
