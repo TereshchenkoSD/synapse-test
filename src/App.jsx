@@ -12,27 +12,29 @@ import Slider from './components/Slider';
 
 const App = () => {
   return (
-    <AppContainer>
-      <NavBar />
-      <Slider />
-      {/* <Suspense fallback={<Loader />}>
-        <HomePage />
-        <Switch>
-          <PublicRoute path="/" exact>
-            <Redirect to="/login" />
-          </PublicRoute>
-          <PublicRoute path="/signup" restricted>
-            <RegisterPage />
-          </PublicRoute>
-          <PublicRoute to="/login" restricted>
-            <LoginPage />
-          </PublicRoute>
-          <PrivateRoute path="/home">
-            <HomePage />
-          </PrivateRoute>
-        </Switch>
-      </Suspense> */}
-    </AppContainer>
+    <>
+      <AppContainer>
+        <NavBar />
+        <Slider />
+        {/* <Suspense fallback={<Loader />}>
+      <HomePage />
+      <Switch>
+        <PublicRoute path="/" exact>
+          <Redirect to="/login" />
+        </PublicRoute>
+        <PublicRoute path="/signup" restricted>
+          <RegisterPage />
+        </PublicRoute>
+        <PublicRoute to="/login" restricted>
+          <LoginPage />
+        </PublicRoute>
+        <PrivateRoute path="/home">
+          <HomePage />
+        </PrivateRoute>
+      </Switch>
+    </Suspense> */}
+      </AppContainer>
+    </>
   );
 };
 

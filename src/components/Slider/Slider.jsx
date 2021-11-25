@@ -1,30 +1,30 @@
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react';
 import 'swiper/swiper-bundle.min.css';
 import { Navigation, Pagination } from 'swiper';
+import { SlideImage } from './Slider.styles';
 
 import slide from '../../images/1.jpg';
 
 const Slider = () => {
   return (
     <Swiper
-      modules={[Navigation, Pagination]}
-      spaceBetween={50}
-      slidesPerView={3}
-      navigation
+      modules={[Pagination]}
+      spaceBetween={0}
+      slidesPerView={1}
       pagination={{ clickable: true }}
       onSlideChange={() => console.log('slide change')}
     >
       <SwiperSlide>
-        <img src={slide} alt="slide_image" />
+        <SlideImage src={slide} alt="slide_image" />
       </SwiperSlide>
       <SwiperSlide>
-        <img src={slide} alt="slide_image" />
+        <SlideImage src={slide} alt="slide_image" />
       </SwiperSlide>
       <SwiperSlide>
-        <img src={slide} alt="slide_image" />
+        <SlideImage src={slide} alt="slide_image" />
       </SwiperSlide>
       <SwiperSlide>
-        <img src={slide} alt="slide_image" />
+        <SlideImage src={slide} alt="slide_image" />
       </SwiperSlide>
     </Swiper>
   );
