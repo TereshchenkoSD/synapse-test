@@ -13,8 +13,8 @@ import Slider from './components/Slider';
 const App = () => {
   return (
     <>
+      <NavBar />
       <AppContainer>
-        <NavBar />
         <Slider />
         {/* <Suspense fallback={<Loader />}>
       <HomePage />
