@@ -4,6 +4,8 @@ import AppContainer from './components/AppContainer';
 import NavBar from './components/NavBar';
 import Slider from './components/Slider';
 
+import movies from './data/imdb.json';
+
 // import Loader from './components/Loader';
 
 // import PrivateRoute from './components/PrivateRout';
@@ -15,7 +17,7 @@ const App = () => {
     <>
       <NavBar />
       <AppContainer>
-        <Slider />
+        <Slider movies={movies} />
         {/* <Suspense fallback={<Loader />}>
       <HomePage />
       <Switch>
