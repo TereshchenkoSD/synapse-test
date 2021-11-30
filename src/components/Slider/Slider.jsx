@@ -27,7 +27,11 @@ const Slider = ({ movies }) => {
     >
       {movies.map(({ id, poster, title, plot }) => (
         <SwiperSlide className={s.slideContainer}>
-          <img className={s.sliderImage} key={id} src={poster} alt={title} />
+          <img className={s.slideImage} key={id} src={poster} alt={title} />
+          <div className={s.slideTextContainer}>
+            <p className={s.slideTitle}>{title}</p>
+            <p className={s.slideText}>Plot: {plot}</p>
+          </div>
         </SwiperSlide>
       ))}
     </Swiper>
