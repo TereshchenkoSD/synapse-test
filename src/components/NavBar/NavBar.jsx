@@ -1,8 +1,11 @@
+import { useState, useEffect } from 'react';
 import { Header, HeaderContainer, ButtonBlockContainer } from './NavBar.styles';
 import logo from '../../images/cinema_projector.png';
 import Button from '../Button';
+import Modal from '../Modal';
 
 const NavBar = () => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <Header>
       <HeaderContainer>
@@ -14,7 +17,7 @@ const NavBar = () => {
           <Button
             text={'Sign up'}
             type={'submit'}
-            onClick={() => console.log('sign up button clicked')}
+            onClick={() => setIsOpen(true)}
           />
           <Button
             text={'Sign in'}
@@ -28,6 +31,7 @@ const NavBar = () => {
           />
         </ButtonBlockContainer>
       </HeaderContainer>
+      {isOpen && <Modal onClose={() => setIsOpen(false)} />}
     </Header>
   );
 };
