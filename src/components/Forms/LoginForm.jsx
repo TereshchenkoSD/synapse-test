@@ -1,94 +1,93 @@
-import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import 'yup-phone';
-import { FcGoogle } from 'react-icons/fc';
-import s from 'components/Forms/Forms.module.css';
-import ButtonBlock from '../ButtonBlock/ButtonBlock';
+import { useState } from 'react';
 
-const LogInSchema = Yup.object().shape({
-  email: Yup.string().email().required('Required'),
-  password: Yup.string()
-    .min(6, 'Password is too short - should be 7 chars minimum.')
-    .required('Required'),
-});
+import PropTypes from 'prop-types';
 
-export default function LoginForm() {
-  const dispatch = useDispatch();
-  const history = useHistory();
+// import { useDispatch, useSelector } from 'react-redux';
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(LogInSchema),
-  });
+// import { addContact } from '../../redux/actions/contacts';
 
-  const onSubmit = newUser => dispatch(logIn(newUser));
+// import selectors from '../../redux/selectors/contactsSelectors';
 
-  const onSignUpBtnClick = () => history.push('/signup');
+// import * as operations from '../../redux/operations/contactsOperations';
+
+import { Form, Label, Input, Button } from './LoginForm.styles';
+
+export const LoginForm = () => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  // const dispatch = useDispatch();
+  // const contacts = useSelector(selectors.getContacts);
+
+  const handleInputChange = e => {
+    const { name, value } = e.currentTarget;
+
+    switch (name) {
+      case 'name':
+        setName(value);
+        break;
+
+      case 'number':
+        setNumber(value);
+        break;
+
+      default:
+        return;
+    }
+  };
+
+  // const handleSubmit = e => {
+  //   e.preventDefault();
+
+  //   if (
+  //     contacts.find(
+  //       contact => contact.name.toLowerCase() === name.toLowerCase(),
+  //     )
+  //   ) {
+  //     alert(`${name} is already in the contact list`);
+  //     return;
+  //   }
+  //   dispatch(operations.addContact(name, number));
+
+  //   formReset();
+  // };
+
+  // const formReset = () => {
+  //   setName('');
+  //   setNumber('');
+  // };
 
   return (
-    <div className={s.wrap}>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={s.textWrap}>
-          <p className={s.text}>
-            Вы можете авторизоваться с помощью Google Account:
-          </p>
-          <a
-            className={s.googleBtn}
-            href="https://kapusta-api-project.herokuapp.com/api/auth/google"
-          >
-            <FcGoogle size={19} />
-            Google
-          </a>
-        </div>
-        <div className={s.textWrap}>
-          <p className={s.text}>
-            Или зайти с помощью e-mail и пароля, предварительно
-            зарегистрировавшись:
-          </p>
-          <div>
-            <label className={s.label}>
-              {errors.email && <span className={s.errors}> * </span>}
-              Электронная почта:
-            </label>
-            <input
-              className={s.field}
-              type="email"
-              {...register('email')}
-              placeholder="your@email.com"
-            />
-            {errors.email && <p className={s.errors}>{errors.email.message}</p>}
-          </div>
-          <div className={s.fieldWrap}>
-            <label className={s.label}>
-              {errors.password && <span className={s.errors}> * </span>} Пароль:
-            </label>
-            <input
-              className={s.field}
-              type="password"
-              {...register('password')}
-              placeholder="********"
-            />
-            {errors.password && (
-              <p className={s.errors}>{errors.password.message}</p>
-            )}
-          </div>
-          <ButtonBlock
-            firstButtonText={'Войти'}
-            secondButtonText={'Регистрация'}
-            //firstButtonHandler={() => console.log('firstButtonHandler')}
-            secondButtonHandler={onSignUpBtnClick}
-            firstButtonType={'submit'}
-            secondButtonType={'button'}
-          ></ButtonBlock>
-        </div>
-      </form>
-    </div>
+    <Form onSubmit={() => console.log('hello')}>
+      <Label>
+        Email
+        <Input
+          type="text"
+          name="name"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
+          required
+          value={name}
+          onChange={handleInputChange}
+        />
+      </Label>
+      <Label>
+        Password
+        <Input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
+          value={number}
+          onChange={handleInputChange}
+        />
+      </Label>
+      <Button type="submit">Add contact</Button>
+    </Form>
   );
-}
+};
+
+LoginForm.propTypes = {
+  onSubmit: PropTypes.func,
+};
+
+export default LoginForm;

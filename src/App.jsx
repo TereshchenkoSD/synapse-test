@@ -3,6 +3,8 @@
 import AppContainer from './components/AppContainer';
 import NavBar from './components/NavBar';
 import Slider from './components/Slider';
+// import RegisterForm from './components/Forms/RegisterForm';
+import LoginForm from './components/Forms/LoginForm';
 
 import movies from './data/imdb.json';
 
@@ -17,7 +19,8 @@ const App = () => {
     <>
       <NavBar />
       <AppContainer>
-        <Slider movies={movies} />
+        {/* <Slider movies={movies} /> */}
+        <LoginForm />
         {/* <Suspense fallback={<Loader />}>
       <HomePage />
       <Switch>
