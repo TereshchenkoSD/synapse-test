@@ -1,7 +1,11 @@
 import { useState } from 'react';
 
-import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+import { Form, Label, Input, Button, Errors } from './LoginForm.styles';
 // import { useDispatch, useSelector } from 'react-redux';
 
 // import { addContact } from '../../redux/actions/contacts';
@@ -10,13 +14,26 @@ import PropTypes from 'prop-types';
 
 // import * as operations from '../../redux/operations/contactsOperations';
 
-import { Form, Label, Input, Button } from './LoginForm.styles';
+const loginSchema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup
+    .string()
+    .min(6, 'Password is too short - should be 6 chars minimum.')
+    .matches('^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&].*$')
+    .required(),
+});
 
 export const LoginForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   // const dispatch = useDispatch();
   // const contacts = useSelector(selectors.getContacts);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(loginSchema) });
 
   const handleInputChange = e => {
     const { name, value } = e.currentTarget;
@@ -57,37 +74,28 @@ export const LoginForm = () => {
   // };
 
   return (
-    <Form onSubmit={() => console.log('hello')}>
+    <Form onSubmit={handleSubmit()}>
       <Label>
         Email
         <Input
-          type="text"
-          name="name"
-          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
-          required
-          value={name}
-          onChange={handleInputChange}
+          type="email"
+          {...register('email', { required: true })}
+          placeholder="your@email"
         />
+        {errors.email && <Errors>{errors.email.message}</Errors>}
       </Label>
       <Label>
         Password
         <Input
-          type="tel"
-          name="number"
-          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
-          value={number}
-          onChange={handleInputChange}
+          type="password"
+          {...register('password', { required: true })}
+          placeholder="********"
         />
+        {errors.password && <Errors>{errors.password.message}</Errors>}
       </Label>
       <Button type="submit">Add contact</Button>
     </Form>
   );
-};
-
-LoginForm.propTypes = {
-  onSubmit: PropTypes.func,
 };
 
 export default LoginForm;

@@ -22,6 +22,15 @@ export const Input = styled.input`
   line-height: 1.875;
 `;
 
+export const Errors = styled.span`
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 0.85;
+  letter-spacing: 0.04em;
+  margin-top: 5px;
+  color: var(--accent-color-primary);
+`;
+
 export const Button = styled.button`
   display: flex;
   align-items: center;
