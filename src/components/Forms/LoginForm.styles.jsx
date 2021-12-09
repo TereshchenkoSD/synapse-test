@@ -1,13 +1,17 @@
 import styled from '@emotion/styled/macro';
 
 export const Form = styled.form`
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Label = styled.label`
   display: flex;
   flex-direction: column;
   max-width: 400px;
+  width: 100%;
   margin-bottom: 15px;
   margin-right: auto;
   margin-left: auto;

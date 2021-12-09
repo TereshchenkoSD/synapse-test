@@ -6,6 +6,7 @@ export const Header = styled.header`
   width: 100%;
   background: url(${bgHeader});
   background-size: cover;
+  margin-bottom: 30px;
 
   &::before {
     position: absolute;

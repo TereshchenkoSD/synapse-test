@@ -5,7 +5,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { Form, Label, Input, Button, Errors } from './LoginForm.styles';
+import { Form, Label, Input, Errors } from './LoginForm.styles';
+import Button from '../Button';
 // import { useDispatch, useSelector } from 'react-redux';
 
 // import { addContact } from '../../redux/actions/contacts';
@@ -93,7 +94,11 @@ export const LoginForm = () => {
         />
         {errors.password && <Errors>{errors.password.message}</Errors>}
       </Label>
-      <Button type="submit">Add contact</Button>
+      <Button
+        type={'submit'}
+        onClick={() => console.log('hi')}
+        text={'Sign in'}
+      ></Button>
     </Form>
   );
 };
