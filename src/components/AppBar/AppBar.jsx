@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-import { Header, HeaderContainer, ButtonBlockContainer } from './NavBar.styles';
+import { Header, HeaderContainer, ButtonBlockContainer } from './AppBar.styles';
 import logo from '../../images/cinema_projector.png';
 import Button from '../Button';
-import Modal from '../Modal';
+// import Modal from '../Modal';
 
-const NavBar = () => {
+const AppBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Header>
@@ -31,9 +31,9 @@ const NavBar = () => {
           />
         </ButtonBlockContainer>
       </HeaderContainer>
-      {isOpen && <Modal onClose={() => setIsOpen(false)} />}
+      {/* {isOpen && <Modal onClose={() => setIsOpen(false)} />} */}
     </Header>
   );
 };
 
-export default NavBar;
+export default AppBar;

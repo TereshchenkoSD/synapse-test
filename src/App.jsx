@@ -1,7 +1,7 @@
 import { Redirect, Switch } from 'react-router-dom';
 import { Suspense } from 'react';
 import AppContainer from './components/AppContainer';
-import NavBar from './components/NavBar';
+import AppBar from './components/AppBar';
 
 import Loader from './components/Loader';
 
@@ -16,25 +16,21 @@ import LoginPage from './views/LoginPage';
 const App = () => {
   return (
     <>
-      <NavBar />
+      <AppBar />
       <AppContainer>
-        <Suspense fallback={<Loader />}>
-          <HomePage />
-          <Switch>
+        <Switch>
+          <Suspense fallback={<Loader />}>
             <PublicRoute path="/" exact>
-              <Redirect to="/login" />
+              <HomePage />
             </PublicRoute>
-            <PublicRoute path="/signup" restricted>
+            <PublicRoute path="/register" restricted>
               <RegisterPage />
             </PublicRoute>
             <PublicRoute to="/login" restricted>
               <LoginPage />
             </PublicRoute>
-            <PrivateRoute path="/home">
-              <HomePage />
-            </PrivateRoute>
-          </Switch>
-        </Suspense>
+          </Suspense>
+        </Switch>
       </AppContainer>
     </>
   );
