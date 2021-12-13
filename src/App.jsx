@@ -20,13 +20,13 @@ const App = () => {
       <AppContainer>
         <Switch>
           <Suspense fallback={<Loader />}>
-            <PublicRoute path="/" exact>
+            <PublicRoute exact path="/">
               <HomePage />
             </PublicRoute>
             <PublicRoute path="/register" restricted>
               <RegisterPage />
             </PublicRoute>
-            <PublicRoute to="/login" restricted>
+            <PublicRoute path="/login" restricted>
               <LoginPage />
             </PublicRoute>
           </Suspense>

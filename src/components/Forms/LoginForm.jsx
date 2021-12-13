@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import { Form, Label, Input, Errors } from './LoginForm.styles';
+import { Form, Label, Input, Errors } from './Form.styles';
 import Button from '../Button';
 // import { useDispatch, useSelector } from 'react-redux';
 

@@ -1,6 +1,6 @@
 import LoginForm from '../components/Forms/LoginForm';
-import Title from './components/Title';
-import FormContainer from './components/Forms/FormContainer';
+import Title from '../components/Title';
+import FormContainer from '../components/Forms/FormContainer';
 
 const LoginPage = () => {
   return (

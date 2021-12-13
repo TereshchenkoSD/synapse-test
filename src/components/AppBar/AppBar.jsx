@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { Header, HeaderContainer, ButtonBlockContainer } from './AppBar.styles';
+import { Header, HeaderContainer } from './AppBar.styles';
 import logo from '../../images/cinema_projector.png';
-import Button from '../Button';
+// import Button from '../Button';
 // import Modal from '../Modal';
+import Navigation from '../Navigation';
 
 const AppBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,25 +14,8 @@ const AppBar = () => {
           <img src={logo} alt="logo" width="90" height="34" />
         </a>
 
-        <ButtonBlockContainer>
-          <Button
-            text={'Sign up'}
-            type={'submit'}
-            onClick={() => setIsOpen(true)}
-          />
-          <Button
-            text={'Sign in'}
-            type={'submit'}
-            onClick={() => console.log('sign in button clicked')}
-          />
-          <Button
-            text={'Browse'}
-            type={'button'}
-            onClick={() => console.log('browse button clicked')}
-          />
-        </ButtonBlockContainer>
+        <Navigation />
       </HeaderContainer>
-      {/* {isOpen && <Modal onClose={() => setIsOpen(false)} />} */}
     </Header>
   );
 };
