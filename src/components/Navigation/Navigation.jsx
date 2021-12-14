@@ -1,9 +1,10 @@
 import { NavLink } from 'react-router-dom';
 import { NavLinkDefault, NavLinkActive } from './Navigation.styles';
+import { NavContainer } from './Navigation.styles';
 
 const Navigation = () => {
   return (
-    <nav>
+    <NavContainer>
       <NavLink
         exact
         to="/"
@@ -26,7 +27,7 @@ const Navigation = () => {
       >
         Sign In
       </NavLink>
-    </nav>
+    </NavContainer>
   );
 };
 

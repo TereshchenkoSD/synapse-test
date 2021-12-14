@@ -6,7 +6,6 @@ import logo from '../../images/cinema_projector.png';
 import Navigation from '../Navigation';
 
 const AppBar = () => {
-  const [isOpen, setIsOpen] = useState(false);
   return (
     <Header>
       <HeaderContainer>
