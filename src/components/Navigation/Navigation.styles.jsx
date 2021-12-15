@@ -16,7 +16,19 @@ export const NavLinkDefault = css`
 `;
 
 export const NavLinkActive = css`
+  position: relative;
   color: var(--white-color);
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: var(--accent-color-primary);
+    border-radius: 2px;
+  }
 `;
 
 export const NavContainer = styled.nav`
