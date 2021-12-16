@@ -16,6 +16,7 @@
   --mobile-shodow: 5px 10px 20px 0px rgba(170, 178, 197, 0.4);
   --transition-function: 250ms;
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --card-set-gap: 30px;
 }
 
 html {
