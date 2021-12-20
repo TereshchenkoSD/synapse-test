@@ -7,6 +7,7 @@ import * as yup from 'yup';
 
 import { Form, Label, Input, Errors } from './Form.styles';
 import Button from '../Button';
+import { loginUser } from '../../api/userApi';
 // import { useDispatch, useSelector } from 'react-redux';
 
 // import { addContact } from '../../redux/actions/contacts';
@@ -20,13 +21,11 @@ const loginSchema = yup.object().shape({
   password: yup
     .string()
     .min(6, 'Password is too short - should be 6 chars minimum.')
-    .matches('^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&].*$')
+    // .matches('^(?=.*[A-Za-z])(?=.*d)(?=.*[@$!%*#?&])[A-Za-zd@$!%*#?&].*$')
     .required(),
 });
 
-export const LoginForm = () => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+export const LoginForm = ({ getCurrentUser }) => {
   // const dispatch = useDispatch();
   // const contacts = useSelector(selectors.getContacts);
 
@@ -36,22 +35,22 @@ export const LoginForm = () => {
     formState: { errors },
   } = useForm({ resolver: yupResolver(loginSchema) });
 
-  const handleInputChange = e => {
-    const { name, value } = e.currentTarget;
+  // const handleInputChange = e => {
+  //   const { name, value } = e.currentTarget;
 
-    switch (name) {
-      case 'name':
-        setName(value);
-        break;
+  //   switch (name) {
+  //     case 'name':
+  //       setName(value);
+  //       break;
 
-      case 'number':
-        setNumber(value);
-        break;
+  //     case 'number':
+  //       setNumber(value);
+  //       break;
 
-      default:
-        return;
-    }
-  };
+  //     default:
+  //       return;
+  //   }
+  // };
 
   // const handleSubmit = e => {
   //   e.preventDefault();
@@ -74,8 +73,22 @@ export const LoginForm = () => {
   //   setNumber('');
   // };
 
+  const onSubmit = async data => {
+    try {
+      const currentUser = await loginUser(data);
+      console.log(currentUser);
+      if (!currentUser) {
+        return;
+      }
+
+      getCurrentUser(currentUser);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
-    <Form onSubmit={handleSubmit()}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
         Email
         <Input
@@ -94,11 +107,7 @@ export const LoginForm = () => {
         />
         {errors.password && <Errors>{errors.password.message}</Errors>}
       </Label>
-      <Button
-        type={'submit'}
-        onClick={() => console.log('hi')}
-        text={'Sign in'}
-      ></Button>
+      <Button type={'submit'} text={'Sign in'}></Button>
     </Form>
   );
 };

@@ -1,5 +1,5 @@
 import { Redirect, Switch } from 'react-router-dom';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import AppContainer from './components/AppContainer';
 import AppBar from './components/AppBar';
 
@@ -14,6 +14,12 @@ import RegisterPage from './views/RegisterPage';
 import LoginPage from './views/LoginPage';
 
 const App = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const getCurrentUser = user => {
+    setCurrentUser(user);
+  };
+
   return (
     <>
       <AppBar />
@@ -21,13 +27,14 @@ const App = () => {
         <Switch>
           <Suspense fallback={<Loader />}>
             <PublicRoute exact path="/">
+              {currentUser && <Redirect to="/" />}
               <HomePage />
             </PublicRoute>
             <PublicRoute path="/register" restricted>
               <RegisterPage />
             </PublicRoute>
             <PublicRoute path="/login" restricted>
-              <LoginPage />
+              <LoginPage getCurrentUser={getCurrentUser} />
             </PublicRoute>
           </Suspense>
         </Switch>

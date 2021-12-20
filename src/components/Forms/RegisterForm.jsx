@@ -8,6 +8,7 @@ import 'yup-phone';
 // import { FcGoogle } from 'react-icons/fc';
 import { Form, Label, Input, Errors } from './Form.styles';
 import Button from '../Button';
+import { registerUser } from '../../api/userApi';
 
 const registerSchema = yup.object().shape({
   username: yup.string().max(50, 'Too Long').required('Required'),
@@ -30,12 +31,12 @@ export default function RegisterForm() {
     resolver: yupResolver(registerSchema),
   });
 
-  // const onSubmit = newUser => dispatch(signUp(newUser));
+  const onSubmit = data => registerUser(data);
 
   // const onLogInBtnClick = () => history.push('/login');
 
   return (
-    <Form onSubmit={handleSubmit()}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Label>
         User name
         <Input
@@ -63,11 +64,7 @@ export default function RegisterForm() {
         />
         {errors.password && <Errors>{errors.password.message}</Errors>}
       </Label>
-      <Button
-        type={'submit'}
-        onClick={() => console.log('hi')}
-        text={'Sign up'}
-      ></Button>
+      <Button type={'submit'} text={'Sign up'}></Button>
     </Form>
   );
 }
