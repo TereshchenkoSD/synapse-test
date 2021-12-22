@@ -14,9 +14,11 @@ const UserMenu = () => {
         <AccountCircleIcon />
       </UserAvatarWrapper>
       <UserWelcomeText>Welcome</UserWelcomeText>
-      <UserLogOutBtn>
+      <UserLogOutBtn
+        type="button"
+        onClick={() => console.log('logout button is pressed')}
+      >
         <LogoutIcon />
-        Log out
       </UserLogOutBtn>
     </UserMenuContainer>
   );
