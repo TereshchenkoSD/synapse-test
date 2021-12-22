@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+
+import context from '../../context/authContext';
 
 import { useForm } from 'react-hook-form';
 
@@ -25,7 +27,8 @@ const loginSchema = yup.object().shape({
     .required(),
 });
 
-export const LoginForm = ({ getCurrentUser }) => {
+export const LoginForm = () => {
+  const { onLogIn } = useContext(context);
   // const dispatch = useDispatch();
   // const contacts = useSelector(selectors.getContacts);
 
@@ -81,7 +84,7 @@ export const LoginForm = ({ getCurrentUser }) => {
         return;
       }
 
-      getCurrentUser(currentUser);
+      onLogIn(currentUser);
     } catch (error) {
       console.log(error.message);
     }
