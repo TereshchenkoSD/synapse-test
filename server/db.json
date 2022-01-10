@@ -358,6 +358,12 @@
       "email": "serghh1988@gmail.com",
       "password": "tsd654363",
       "id": 1
+    },
+    {
+      "username": "Elena Khorishko",
+      "email": "khorishko.olena@gmail.com",
+      "password": "gall1988",
+      "id": 2
     }
   ]
 }

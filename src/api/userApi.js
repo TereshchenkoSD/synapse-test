@@ -1,3 +1,8 @@
+import {
+  onLocalStorageSave,
+  onLocalStorageRemove,
+  onLocalStorageRead,
+} from '../utils/localStorageFunction';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3080';
@@ -34,9 +39,13 @@ export const loginUser = async user => {
       return;
     }
     const { data } = await axios.get(`/users?email=${user.email}`);
+    const { email } = data[0];
     console.log(data);
-    return data;
+    onLocalStorageSave('loggedUser', { email });
+    return data[0];
   } catch (error) {
     console.log(error.mesage);
   }
 };
+
+export const logoutUser = async user => {};

@@ -12,11 +12,13 @@ import PublicRoute from './components/PublicRoute';
 import HomePage from './views/HomePage';
 import RegisterPage from './views/RegisterPage';
 import LoginPage from './views/LoginPage';
+import UserPage from './views/UserPage';
 
 import context from './context/authContext';
 
 const App = () => {
   const { currentUser } = useContext(context);
+  console.log(currentUser);
   // const [currentUser, setCurrentUser] = useState(null);
 
   // const getCurrentUser = user => {
@@ -30,15 +32,17 @@ const App = () => {
         <Switch>
           <Suspense fallback={<Loader />}>
             <PublicRoute exact path="/">
-              {currentUser && <Redirect to="/" />}
               <HomePage />
             </PublicRoute>
-            <PublicRoute path="/register" restricted>
+            <PublicRoute path="/register" restricted redirectTo="/login">
               <RegisterPage />
             </PublicRoute>
-            <PublicRoute path="/login" restricted>
+            <PublicRoute path="/login" restricted redirectTo="/">
               <LoginPage />
             </PublicRoute>
+            {/* <PrivateRoute path="/user">
+              <UserPage />
+            </PrivateRoute> */}
           </Suspense>
         </Switch>
       </AppContainer>
